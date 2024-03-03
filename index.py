@@ -66,7 +66,6 @@ index_layout = html.Div(
     children=[
         html.Header(
             children=[
-                # html.Div(dls.Hash(fullscreen=True), style={"height": "200px"}),
                 html.Div(children="Where in the World are the Griff 6?", className="wg"),
                 html.Br(),
                 dcc.Interval(id='update-rotation', interval=500, n_intervals=0),
