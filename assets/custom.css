@@ -1,0 +1,63 @@
+.wg {
+    font-size: 27px;
+    font-style: italic;
+    font-family: Tratello;
+}
+
+.powered {
+    font-size: 18px;
+    font-style: italic;
+    font-family: Skia;
+}
+
+.beverage {
+    font-size: 18px;
+    font-style: italic;
+    font-family: Tratello;
+}
+
+.weather {
+    font-size: 18px;
+    font-style: italic;
+    font-family: Tratello;
+}
+
+.other {
+    height: 600px;
+    line-height: 60px;
+    border-bottom: thin lightgrey solid;
+    }
+
+.pic {
+    'height': '500px';
+}
+
+.table-weather{
+  border: 1px solid #55575D;
+  border-collapse: collapse;
+  width: 20%;
+  max-height: 500px;
+}
+
+.table-weather td{
+  border: 1px solid #55575D;
+}
+
+#weather
+{
+    white-space:pre-wrap;
+}
+
+.Select-control {
+    background-color: rgb(44, 50, 56) !important;
+    color: rgb(2, 204, 255);
+  }
+
+.Select-menu-outer {
+    background-color: rgb(44, 50, 56);
+    color: rgb(2, 204, 255);
+}
+
+.Select-value-label {
+    color: rgb(2, 204, 255) !important;
+}
