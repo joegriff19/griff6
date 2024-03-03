@@ -13,3 +13,4 @@ flask
 dash_loading_spinners
 requests
 timezonefinder
+Werkzeug==2.2.2
