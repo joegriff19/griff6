@@ -6,19 +6,14 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Output, Input
 import warnings
 from datetime import date
-import time
-import dash_player as dp
-import dash_leaflet as dl
 import coordinates
 import globe
 import weather
-# import city_list
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
 import dash_extensions as de
 import os
 from flask import send_from_directory
-import dash_loading_spinners as dls
 
 today = date.today()
 warnings.simplefilter(action='ignore', category=FutureWarning)
