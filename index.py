@@ -61,7 +61,7 @@ index_layout = html.Div(
     children=[
         html.Header(
             children=[
-                html.Div(children="Where in the World are the Griff 6?", className="wg"),
+                html.Div(children="Where in the World are the Griffins?", className="wg"),
                 html.Br(),
                 dcc.Interval(id='update-rotation', interval=500, n_intervals=0),
                 html.Div(children=[
@@ -90,65 +90,78 @@ index_layout = html.Div(
                 "margin": "0px"
             }
         ),
+        html.Br(),
+        html.Br(),
         html.Div([
-            html.Br(),
-            html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
+                html.Div('📍 Oak Park'),
+                # html.Div(id="weather", children=weather.update_weather(op_lat_lon_str), className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'width': '30%', 'display': 'inline-block'}),
 
-            html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
-            html.Div('📍 Oak Park'),
-            # html.Div(id="weather", children=weather.update_weather(op_lat_lon_str), className='weather'),
-            html.Br(),
-            html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
+                html.Div('📍 Berlin'),
+                # html.Div(id="weather", children=weather.update_weather(ber_lat_lon_str), className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'width': '30%', 'display': 'inline-block'}),
 
-            html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
-            html.Div('📍 Berlin'),
-            # html.Div(id="weather", children=weather.update_weather(ber_lat_lon_str), className='weather'),
-            html.Br(),
-            html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
+                html.Div('📍 Chicago'),
+                # html.Div(id="weather", children=weather.update_weather(chi_lat_lon_str), className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'width': '30%', 'display': 'inline-block'}),
+        ]),
+        html.Div([
+            html.Div([
+                html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
+                html.Div('📍 Madrid'),
+                # html.Div(id="weather", children=weather.update_weather(mad_lat_lon_str), className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'width': '30%', 'display': 'inline-block'}),
 
-            html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
-            html.Div('📍 Chicago'),
-            # html.Div(id="weather", children=weather.update_weather(chi_lat_lon_str), className='weather'),
-            html.Br(),
-            html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
+                html.Div('📍 St. Louis'),
+                # html.Div(id="weather", children=weather.update_weather(stl_lat_lon_str), className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'width': '30%', 'display': 'inline-block'}),
 
-            html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
-            html.Div('📍 Madrid'),
-            # html.Div(id="weather", children=weather.update_weather(mad_lat_lon_str), className='weather'),
-            html.Br(),
-            html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
+                # html.Div('BONUS!'),
+                html.Div('📍 Dubuque -- bonus!'),
+                # html.Div(id="weather", children=weather.update_weather(dbq_lat_lon_str), className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'width': '30%', 'display': 'inline-block'}),
+        ]),
 
-            html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
-            html.Div('📍 St. Louis'),
-            # html.Div(id="weather", children=weather.update_weather(stl_lat_lon_str), className='weather'),
-            html.Br(),
-            html.Br(),
-
-            html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
-            html.Div('BONUS!'),
-            html.Div('📍 Dubuque'),
-            # html.Div(id="weather", children=weather.update_weather(dbq_lat_lon_str), className='weather'),
-            html.Br(),
-            html.Br(),
-
-            html.Div(children=[
-                dmc.Group(
-                    children=[
-                        dmc.Anchor(
-                            children=[DashIconify(
-                                icon='line-md:github-loop', width=40, color="#FF69B4")
-                            ],
-                            href=GITHUB
-                        ),
-                        dmc.Anchor(
-                            children=[
-                                DashIconify(
-                                    icon='ri:linkedin-fill', width=40, color="#FF69B4")
-                            ],
-                            href=LINKEDIN
-                        )
-                    ], position='center'
-                )
+        html.Div(children=[
+            dmc.Group(
+                children=[
+                    dmc.Anchor(
+                        children=[DashIconify(
+                            icon='line-md:github-loop', width=40, color="#FF69B4")
+                        ],
+                        href=GITHUB
+                    ),
+                    dmc.Anchor(
+                        children=[
+                            DashIconify(
+                                icon='ri:linkedin-fill', width=40, color="#FF69B4")
+                        ],
+                        href=LINKEDIN
+                    )
+                ], position='center'
+            )
             ]),
             html.Br(),
             # html.Div(children="🍻", style={"fontSize": "35px"}),
@@ -163,7 +176,7 @@ index_layout = html.Div(
                   # 'align-items': 'center', 'justify-content': 'center'
                   }
         ),
-    ])
+    # ])
 
 
 # page callbacks
