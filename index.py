@@ -61,13 +61,15 @@ index_layout = html.Div(
     children=[
         html.Header(
             children=[
-                html.Div(children="Where are the Griff 6?", className="wg"),
+                # html.Div(x),
+                html.Div(children="Where in the world", className="wg"),
+                html.Div(children="are the Griffins?", className="wg"),
                 html.Br(),
                 dcc.Interval(id='update-rotation', interval=500, n_intervals=0),
                 html.Div(children=[
-                    html.Div(de.Lottie(options=options, width="8vh", height="8vh", url="/loader", speed=1,
+                    html.Div(de.Lottie(options=options, width="10vh", height="10vh", url="/loader", speed=1,
                                        isClickToPauseDisabled=True),
-                             style={'display': 'inline-block', "position": "absolute", "top": "55px"}),
+                             style={'display': 'inline-block', "position": "absolute", "top": "95px"}),
                     html.Div(dcc.Graph(
                         id='rotating-globe',
                         config={
@@ -96,7 +98,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
                 html.Div('📍 Oak Park'),
-                html.Div(id="weather", children=weather.update_weather(op_lat_lon_str), className='weather'),
+                html.Div(id="op_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -105,7 +107,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
                 html.Div('📍 Berlin'),
-                html.Div(id="weather", children=weather.update_weather(ber_lat_lon_str), className='weather'),
+                html.Div(id="ber_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -116,7 +118,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
                 html.Div('📍 Chicago'),
-                html.Div(id="weather", children=weather.update_weather(chi_lat_lon_str), className='weather'),
+                html.Div(id="chi_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -125,7 +127,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
                 html.Div('📍 Madrid'),
-                html.Div(id="weather", children=weather.update_weather(mad_lat_lon_str), className='weather'),
+                html.Div(id="mad_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -136,7 +138,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
                 html.Div('📍 St. Louis'),
-                html.Div(id="weather", children=weather.update_weather(stl_lat_lon_str), className='weather'),
+                html.Div(id="stl_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -146,7 +148,7 @@ index_layout = html.Div(
                 html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
                 # html.Div('BONUS!'),
                 html.Div('📍 Dubuque -- bonus!'),
-                html.Div(id="weather", children=weather.update_weather(dbq_lat_lon_str), className='weather'),
+                html.Div(id="dbq_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -229,3 +231,58 @@ def render_page_content(pathname):
                 "margin": "0px"
             }
         )
+
+
+@app.callback(
+    Output('op_weather', 'children', ),
+    [Input('url', 'pathname', )]
+)
+def fetch_op_weather(pathname):
+    if pathname == '/':
+        return weather.update_weather(op_lat_lon_str)
+
+
+@app.callback(
+    Output('dbq_weather', 'children', ),
+    [Input('url', 'pathname', )]
+)
+def fetch_dbq_weather(pathname):
+    if pathname == '/':
+        return weather.update_weather(dbq_lat_lon_str)
+
+
+@app.callback(
+    Output('chi_weather', 'children', ),
+    [Input('url', 'pathname', )]
+)
+def fetch_chi_weather(pathname):
+    if pathname == '/':
+        return weather.update_weather(chi_lat_lon_str)
+
+
+@app.callback(
+    Output('mad_weather', 'children', ),
+    [Input('url', 'pathname', )]
+)
+def fetch_mad_weather(pathname):
+    if pathname == '/':
+        return weather.update_weather(mad_lat_lon_str)
+
+
+@app.callback(
+    Output('stl_weather', 'children', ),
+    [Input('url', 'pathname', )]
+)
+def fetch_stl_weather(pathname):
+    if pathname == '/':
+        return weather.update_weather(stl_lat_lon_str)
+
+
+@app.callback(
+    Output('ber_weather', 'children', ),
+    [Input('url', 'pathname', )]
+)
+def fetch_ber_weather(pathname):
+    if pathname == '/':
+        return weather.update_weather(ber_lat_lon_str)
+

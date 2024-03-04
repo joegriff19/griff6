@@ -21,6 +21,7 @@ def update_weather(location):
     json_data = weather_requests.json()
     weather_df = pd.DataFrame(json_data)
     # print(weather_df)
+    # print(weather_df.current['observation_time'])
     for i in range(len(weather_df)):
         temp = weather_df.current['temperature']
         # precip = weather_df.current['precip']
