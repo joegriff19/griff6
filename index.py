@@ -100,7 +100,7 @@ index_layout = html.Div(
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
-            ]),
+            ], style={'color': 'white'}),
 
             html.Div([
                 html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
@@ -109,7 +109,7 @@ index_layout = html.Div(
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
-            ]),
+            ], style={'color': 'white'}),
 
         ]),
         html.Div([
