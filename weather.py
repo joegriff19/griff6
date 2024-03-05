@@ -1,13 +1,13 @@
-import numpy as np
+# import numpy as np
 import requests
 import pandas as pd
-import dash
+# import dash
 from dash import html
-from dash_iconify import DashIconify
-import os
-import dash_extensions as de
-from app import server
-from flask import send_from_directory
+# from dash_iconify import DashIconify
+# import os
+# import dash_extensions as de
+# from app import server
+# from flask import send_from_directory
 from timezonefinder import TimezoneFinder
 
 # lottie settings
@@ -28,8 +28,8 @@ def update_weather(location):
         # precip = weather_df.current['precip']
         # cloudcover = weather_df.current['cloudcover']
         weather_descriptions = weather_df.current['weather_descriptions']
-        weather_code = weather_df.current['weather_code']
-        is_day = weather_df.current['is_day']
+        # weather_code = weather_df.current['weather_code']
+        # is_day = weather_df.current['is_day']
         time = weather_df.current['observation_time']
 
     c_temp = int((temp-32) / 1.8)
@@ -66,13 +66,13 @@ def update_weather(location):
 
     global json_path
     # json_path = get_weather_image(weather_code)
-    if is_day == 'no':
-        if json_path == 'sun.json':
-            json_path = 'moon.json'
-        if json_path == 'partly_cloudy.json':
-            json_path = 'moon_cloudy.json'
-        if json_path == 'sun_snow.json':
-            json_path = 'snow_night.json'
+    # if is_day == 'no':
+    #     if json_path == 'sun.json':
+    #         json_path = 'moon.json'
+    #     if json_path == 'partly_cloudy.json':
+    #         json_path = 'moon_cloudy.json'
+    #     if json_path == 'sun_snow.json':
+    #         json_path = 'snow_night.json'
 
     return (html.Div(time_str), html.Div(time_final), html.Div(final_weather_str),
             # html.Div(de.Lottie(options=options, width="10vh", height="10vh", url="/loader2", speed=1,
