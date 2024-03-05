@@ -14,14 +14,13 @@ from dash_iconify import DashIconify
 import dash_extensions as de
 import os
 from flask import send_from_directory
+import time
 
 today = date.today()
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 GITHUB = 'https://github.com/joegriff19'
 LINKEDIN = 'https://www.linkedin.com/in/joseph-m-griffin/'
-# LOTTIE = 'https://assets5.lottiefiles.com/packages/lf20_GoeyCV7pi2.json'
-# LOTTIE = 'https://assets2.lottiefiles.com/packages/lf20_mDnmhAgZkb.json'
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
 # padding for the page content
@@ -48,7 +47,6 @@ app.layout = html.Div([
     content,
 ])
 
-
 op_lat_lon_str = weather.get_lat_lon(coordinates.op_geojson)
 chi_lat_lon_str = weather.get_lat_lon(coordinates.chicago_geojson)
 ber_lat_lon_str = weather.get_lat_lon(coordinates.ber_geojson)
@@ -61,7 +59,12 @@ index_layout = html.Div(
     children=[
         html.Header(
             children=[
-                # html.Div(x),
+                # dbc.Spinner(children=[html.Div(id='page-content')],
+                #             # size="lg", color="#02ccff", type="border",
+                #             # # delay_hide=2000,
+                #             # show_initially=False,
+                #             # spinner_style={"position": "absolute", "top": "-30px"}
+                #             ),
                 html.Div(children="Where in the world", className="wg"),
                 html.Div(children="are the Griffins?", className="wg"),
                 html.Br(),
@@ -98,7 +101,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
                 html.Div('📍 Oak Park'),
-                html.Div(id="op_weather", children=[], className='weather'),
+                # html.Div(id="op_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -107,7 +110,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
                 html.Div('📍 Berlin'),
-                html.Div(id="ber_weather", children=[], className='weather'),
+                # html.Div(id="ber_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -118,7 +121,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
                 html.Div('📍 Chicago'),
-                html.Div(id="chi_weather", children=[], className='weather'),
+                # html.Div(id="chi_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -127,7 +130,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
                 html.Div('📍 Madrid'),
-                html.Div(id="mad_weather", children=[], className='weather'),
+                # html.Div(id="mad_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -138,7 +141,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
                 html.Div('📍 St. Louis'),
-                html.Div(id="stl_weather", children=[], className='weather'),
+                # html.Div(id="stl_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -146,12 +149,10 @@ index_layout = html.Div(
 
             html.Div([
                 html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
-                # html.Div('BONUS!'),
                 html.Div('📍 Dubuque -- bonus!'),
-                html.Div(id="dbq_weather", children=[], className='weather'),
+                # html.Div(id="dbq_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
-            # ], style={'width': '20%', 'display': 'inline-block'}),
             ], style={'color': 'white'}),
         ]),
 
@@ -180,11 +181,7 @@ index_layout = html.Div(
         ], style={'textAlign': 'center',
                   'max-width': '900px',
                   'margin': 'auto',
-                  # 'margin-left': '100px', 'margin-right': '100px',
                   'color': 'text',
-                  # 'width': '50%',
-                  # 'verticalAlign': 'middle'
-                  # 'align-items': 'center', 'justify-content': 'center'
                   }
         ),
     # ])
@@ -215,6 +212,7 @@ def rotate_globe(_):
 )
 def render_page_content(pathname):
     if pathname == '/':
+        time.sleep(3)
         return index_layout
     # If the user tries to reach a different page, return a 404 message
     else:
