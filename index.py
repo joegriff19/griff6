@@ -101,7 +101,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
                 html.Div('📍 Oak Park'),
-                # html.Div(id="op_weather", children=[], className='weather'),
+                html.Div(id="op_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -110,7 +110,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
                 html.Div('📍 Berlin'),
-                # html.Div(id="ber_weather", children=[], className='weather'),
+                html.Div(id="ber_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -121,7 +121,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
                 html.Div('📍 Chicago'),
-                # html.Div(id="chi_weather", children=[], className='weather'),
+                html.Div(id="chi_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -130,7 +130,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
                 html.Div('📍 Madrid'),
-                # html.Div(id="mad_weather", children=[], className='weather'),
+                html.Div(id="mad_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -141,7 +141,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
                 html.Div('📍 St. Louis'),
-                # html.Div(id="stl_weather", children=[], className='weather'),
+                html.Div(id="stl_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             # ], style={'width': '20%', 'display': 'inline-block'}),
@@ -150,7 +150,7 @@ index_layout = html.Div(
             html.Div([
                 html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
                 html.Div('📍 Dubuque -- bonus!'),
-                # html.Div(id="dbq_weather", children=[], className='weather'),
+                html.Div(id="dbq_weather", children=[], className='weather'),
                 html.Br(),
                 html.Br(),
             ], style={'color': 'white'}),
@@ -176,7 +176,6 @@ index_layout = html.Div(
             )
             ]),
             html.Br(),
-            # html.Div(children="🍻", style={"fontSize": "35px"}),
             html.Br(),
         ], style={'textAlign': 'center',
                   'max-width': '900px',
@@ -184,7 +183,7 @@ index_layout = html.Div(
                   'color': 'text',
                   }
         ),
-    # ])
+
 
 
 # page callbacks
