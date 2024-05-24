@@ -1,4 +1,4 @@
-dash==2.6.1
+dash==2.13.0
 pandas
 gunicorn
 dash-bootstrap-components
@@ -6,7 +6,7 @@ dash_player
 dash_leaflet
 plotly
 pycountry
-dash_mantine_components
+dash_mantine_components==0.12.1
 dash_iconify
 dash_extensions
 flask
