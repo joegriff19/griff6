@@ -70,7 +70,7 @@ index_layout = html.Div(
                 html.Br(),
                 dcc.Interval(id='update-rotation', interval=500, n_intervals=0),
                 html.Div(children=[
-                    html.Div(de.Lottie(options=options, width="10vh", height="10vh", url="/loader", speed=1,
+                    html.Div(de.Lottie(options=options, width="5vh", height="10vh", url="/loader", speed=1,
                                        isClickToPauseDisabled=True),
                              style={'display': 'inline-block', "position": "absolute", "top": "95px"}),
                     html.Div(dcc.Graph(
@@ -86,6 +86,9 @@ index_layout = html.Div(
                     ), style={'width': '30vh', 'display': 'inline-block'}
                     ),
                 ]),
+                html.Br(),
+                dbc.Button('Click to find them!', color="secondary", outline=True, id='submit-val', n_clicks=0),
+                html.Div(id='container-button-basic', children='')
             ],
             style={
                 'textAlign': 'center',
@@ -97,65 +100,6 @@ index_layout = html.Div(
         ),
         html.Br(),
         html.Br(),
-        html.Div([
-            html.Div([
-                html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
-                html.Div('📍 Oak Park'),
-                html.Div(id="op_weather", children=[], className='weather'),
-                html.Br(),
-                html.Br(),
-            # ], style={'width': '20%', 'display': 'inline-block'}),
-            ], style={'color': 'white'}),
-
-            html.Div([
-                html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
-                html.Div('📍 Berlin'),
-                html.Div(id="ber_weather", children=[], className='weather'),
-                html.Br(),
-                html.Br(),
-            # ], style={'width': '20%', 'display': 'inline-block'}),
-            ], style={'color': 'white'}),
-
-        ]),
-        html.Div([
-            html.Div([
-                html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
-                html.Div('📍 Chicago'),
-                html.Div(id="chi_weather", children=[], className='weather'),
-                html.Br(),
-                html.Br(),
-            # ], style={'width': '20%', 'display': 'inline-block'}),
-            ], style={'color': 'white'}),
-
-            html.Div([
-                html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
-                html.Div('📍 Madrid'),
-                html.Div(id="mad_weather", children=[], className='weather'),
-                html.Br(),
-                html.Br(),
-            # ], style={'width': '20%', 'display': 'inline-block'}),
-            ], style={'color': 'white'}),
-
-        ]),
-        html.Div([
-            html.Div([
-                html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
-                html.Div('📍 St. Louis'),
-                html.Div(id="stl_weather", children=[], className='weather'),
-                html.Br(),
-                html.Br(),
-            # ], style={'width': '20%', 'display': 'inline-block'}),
-            ], style={'color': 'white'}),
-
-            html.Div([
-                html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
-                html.Div('📍 Dubuque -- bonus!'),
-                html.Div(id="dbq_weather", children=[], className='weather'),
-                html.Br(),
-                html.Br(),
-            ], style={'color': 'white'}),
-        ]),
-
         html.Div(children=[
             dmc.Group(
                 children=[
@@ -185,8 +129,78 @@ index_layout = html.Div(
         ),
 
 
-
 # page callbacks
+
+@app.callback(
+    Output('container-button-basic', 'children'),
+    Input('submit-val', 'n_clicks'),
+    # State('input-on-submit', 'value'),
+    prevent_initial_call=True
+)
+def update_output(n_clicks):
+    return (html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('mom_dad.png'), style={'height': '15vh'}),
+                html.Div('📍 Oak Park'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.op_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            # ], style={'width': '20%', 'display': 'inline-block'}),
+            ], style={'color': 'white'}),
+            html.Div([
+                html.Img(src=app.get_asset_url('joe_circle.png'), style={'height': '15vh'}),
+                html.Div('📍 Berlin'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.ber_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'color': 'white'}),
+            html.Div([
+                html.Img(src=app.get_asset_url('peter.png'), style={'height': '15vh'}),
+                html.Div('📍 Chicago'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.chicago_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'color': 'white'}),
+            html.Div([
+                html.Img(src=app.get_asset_url('molly.png'), style={'height': '15vh'}),
+                html.Div('📍 Madrid'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.madrid_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'color': 'white'}),
+            html.Div([
+                html.Img(src=app.get_asset_url('libby2.png'), style={'height': '15vh'}),
+                html.Div('📍 St. Louis'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.stl_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'color': 'white'}),
+
+            html.Div('Bonus!'),
+            html.Br(),
+            html.Div([
+                html.Img(src=app.get_asset_url('tess2.png'), style={'height': '15vh'}),
+                html.Div('📍 North Riverside'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.riverside_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'color': 'white'}),
+
+            html.Div([
+                html.Img(src=app.get_asset_url('janet.png'), style={'height': '15vh'}),
+                html.Div('📍 Dubuque'),
+                html.Div(id="weather", children=weather.update_weather(weather.get_lat_lon(coordinates.dubuque_geojson)),
+                         className='weather'),
+                html.Br(),
+                html.Br(),
+            ], style={'color': 'white'}),
+    )
 
 
 @server.route("/loader", methods=['GET'])
@@ -219,7 +233,7 @@ def render_page_content(pathname):
             [
                 html.H1("404: Page not found", className="text-danger"),
                 html.P("Please return to the home page", className="lead"),
-                dbc.Button(children='Wandering Griffin Travel Home Page', id='home', href='/')
+                dbc.Button(children='Griff 6 Home Page', id='home', href='/')
             ],
             style={
                 'textAlign': 'center',
@@ -229,57 +243,57 @@ def render_page_content(pathname):
             }
         )
 
-
-@app.callback(
-    Output('op_weather', 'children', ),
-    [Input('url', 'pathname', )]
-)
-def fetch_op_weather(pathname):
-    if pathname == '/':
-        return weather.update_weather(op_lat_lon_str)
-
-
-@app.callback(
-    Output('dbq_weather', 'children', ),
-    [Input('url', 'pathname', )]
-)
-def fetch_dbq_weather(pathname):
-    if pathname == '/':
-        return weather.update_weather(dbq_lat_lon_str)
-
-
-@app.callback(
-    Output('chi_weather', 'children', ),
-    [Input('url', 'pathname', )]
-)
-def fetch_chi_weather(pathname):
-    if pathname == '/':
-        return weather.update_weather(chi_lat_lon_str)
-
-
-@app.callback(
-    Output('mad_weather', 'children', ),
-    [Input('url', 'pathname', )]
-)
-def fetch_mad_weather(pathname):
-    if pathname == '/':
-        return weather.update_weather(mad_lat_lon_str)
-
-
-@app.callback(
-    Output('stl_weather', 'children', ),
-    [Input('url', 'pathname', )]
-)
-def fetch_stl_weather(pathname):
-    if pathname == '/':
-        return weather.update_weather(stl_lat_lon_str)
-
-
-@app.callback(
-    Output('ber_weather', 'children', ),
-    [Input('url', 'pathname', )]
-)
-def fetch_ber_weather(pathname):
-    if pathname == '/':
-        return weather.update_weather(ber_lat_lon_str)
-
+#
+# @app.callback(
+#     Output('op_weather', 'children', ),
+#     [Input('url', 'pathname', )]
+# )
+# def fetch_op_weather(pathname):
+#     if pathname == '/':
+#         return weather.update_weather(op_lat_lon_str)
+#
+#
+# @app.callback(
+#     Output('dbq_weather', 'children', ),
+#     [Input('url', 'pathname', )]
+# )
+# def fetch_dbq_weather(pathname):
+#     if pathname == '/':
+#         return weather.update_weather(dbq_lat_lon_str)
+#
+#
+# @app.callback(
+#     Output('chi_weather', 'children', ),
+#     [Input('url', 'pathname', )]
+# )
+# def fetch_chi_weather(pathname):
+#     if pathname == '/':
+#         return weather.update_weather(chi_lat_lon_str)
+#
+#
+# @app.callback(
+#     Output('mad_weather', 'children', ),
+#     [Input('url', 'pathname', )]
+# )
+# def fetch_mad_weather(pathname):
+#     if pathname == '/':
+#         return weather.update_weather(mad_lat_lon_str)
+#
+#
+# @app.callback(
+#     Output('stl_weather', 'children', ),
+#     [Input('url', 'pathname', )]
+# )
+# def fetch_stl_weather(pathname):
+#     if pathname == '/':
+#         return weather.update_weather(stl_lat_lon_str)
+#
+#
+# @app.callback(
+#     Output('ber_weather', 'children', ),
+#     [Input('url', 'pathname', )]
+# )
+# def fetch_ber_weather(pathname):
+#     if pathname == '/':
+#         return weather.update_weather(ber_lat_lon_str)
+#
